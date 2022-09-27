@@ -1,27 +1,59 @@
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class OreLavorate {
-	public int giorno;		
-	public String matricola;
-	public int tempoLav;
-	public double ore;
+	public LocalDate data;	
+	public String matricola;	
+	public int ore;
+	public int minuti;
+	public int oreExtra;
+	public int minutiExtra;
+	public int oreMancanti;
+	public int minutiMancanti;
 	
+	public int getOreMancanti() {
+		return oreMancanti;
+	}
+	public void setOreMancanti(int oreMancanti) {
+		this.oreMancanti = oreMancanti;
+	}
+	public int getMinutiMancanti() {
+		return minutiMancanti;
+	}
+	public void setMinutiMancanti(int minutiMancanti) {
+		this.minutiMancanti = minutiMancanti;
+	}
+	public int getOreExtra() {
+		return oreExtra;
+	}
+	public void setOreExtra(int oreExtra) {
+		this.oreExtra = oreExtra;
+	}
+	public int getMinutiExtra() {
+		return minutiExtra;
+	}
+	public void setMinutiExtra(int minutiExtra) {
+		this.minutiExtra = minutiExtra;
+	}
 	public OreLavorate() {
 		
 	}
-	public OreLavorate(int giorno, String matricola) {		
-		this.giorno = giorno;
+	public OreLavorate(LocalDate giorno, String matricola) {		
+		this.data = giorno;
 		this.matricola = matricola;
 	}
-	public OreLavorate(int giorno, String matricola, int tempoLav) {		
-		this.giorno = giorno;
+	public OreLavorate(LocalDate data, String matricola, int ore, int minuti) {		
+		this.data = data;
 		this.matricola = matricola;
-		this.tempoLav = tempoLav;
+		this.ore = ore;
+		this.minuti = minuti;
 	}
-	public int getGiorno() {
-		return giorno;
+	public LocalDate getData() {
+		return data;
 	}
-	public void setGiorno(int giorno) {
-		this.giorno = giorno;
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 	public String getMatricola() {
 		return matricola;
@@ -29,21 +61,27 @@ public class OreLavorate {
 	public void setMatricola(String matricola) {
 		this.matricola = matricola;
 	}
-	public double getTempoLav() {
-		return tempoLav;
+	public int getOre() {
+		return ore;
 	}
-	public void setTempoLav(int d) {
-		this.tempoLav = d;
+	public void setOre(int ore) {
+		this.ore = ore;
 	}
-	public void setOre() {
-		if(this.tempoLav>=60) {
-			this.ore= Math.floor((this.tempoLav/60));
-			this.tempoLav= this.tempoLav-(int)this.ore*60;
-			}
-		else this.ore = 0;		
+	public int getMinuti() {
+		return minuti;
 	}
-	public double getOre() {
-		return tempoLav;
+	public void setMinuti(int minuti) {
+		this.minuti = minuti;
+	}
+	public void transmute() {
+		while (this.minutiExtra>=60) {
+			this.oreExtra++;
+			this.minutiExtra-=60;
+		}
+		while (this.minutiMancanti>=60) {
+			this.oreMancanti++;
+			this.minutiMancanti-=60;
+		}
 	}
 	
 }
